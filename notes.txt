@@ -1,0 +1,1 @@
+public folder: images, audio files, etc are here
