@@ -54,29 +54,36 @@ function ListGroup() {
                     console.log("The number clicked was: ");
                   }}
                 >
-                  <p className="text-primary">{item.nameOfClass} grade: </p>
+                  <p className="fs-12">{item.nameOfClass} grade: </p>
                   <input
                     type="text"
+                    required
                     value={item.gradeInClass}
                     onChange={(event) => changeGrade(index, event)}
-                    className="form-control is-invalid"
+                    className="form-control"
                   ></input>
                 </li>
               ))}
             </ul>
-            <button className="btn btn-outline-success" type="submit">
-              Submit Grades
-            </button>
+            {items.length > 0 && (
+              <button className="btn btn-success" type="submit">
+                Submit Grades
+              </button>
+            )}
           </form>
-          <button onClick={addToList}>Click This to add class!</button>
+          <button onClick={addToList} className="btn btn-primary">
+            Click This to add class!
+          </button>
+          <input type="text" value={input} onChange={handleInput}></input>
+          <br></br>
           <button
+            className="btn btn-danger"
             onClick={() => {
               addClass(items.slice(0, -1));
             }}
           >
             Click This to delete bottom class!
           </button>
-          <input type="text" value={input} onChange={handleInput}></input>
         </>
       )}
       {response !== "" && <h1>{response}</h1>}

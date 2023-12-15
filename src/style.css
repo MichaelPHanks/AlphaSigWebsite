@@ -1,0 +1,18 @@
+.rightPage {
+    flex: 1;
+    background-color: #770202;
+    padding: 20px;
+    /* Add other styles as needed */
+  }
+
+.leftPage{
+  flex: 1;
+    background-color: #555555;
+    padding: 20px;}
+
+    .mainDiv{
+    margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            min-height: 100vh;}
