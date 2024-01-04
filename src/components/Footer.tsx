@@ -1,6 +1,10 @@
 function Footer() {
-  const name = "Yeah";
-  return <h1>Hello World {name}</h1>;
+  return (
+    <h1>
+      --------------------------------------------------------- Yeah
+      --------------------------------------------------------
+    </h1>
+  );
 }
 
 export default Footer;

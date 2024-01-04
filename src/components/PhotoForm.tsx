@@ -4,7 +4,7 @@ function PhotoForm() {
   const [uploadedFile, changeFile] = useState<File | null>(null);
   const [previewImage, setPreviewImage] = useState<string | null>(null);
 
-  function handleFileChange(event) {
+  function handleFileChange(event: React.ChangeEvent<HTMLInputElement>) {
     const file = event.target.files && event.target.files[0];
     if (file) {
       changeFile(file);
@@ -17,7 +17,9 @@ function PhotoForm() {
       reader.readAsDataURL(file);
     }
   }
-  function handleSubmit() {}
+  function handleSubmit() {
+    console.log(uploadedFile);
+  }
   return (
     <>
       <form onSubmit={handleSubmit}>

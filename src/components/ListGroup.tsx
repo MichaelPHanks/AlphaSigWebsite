@@ -11,7 +11,7 @@ function ListGroup() {
 
   const [average, changeAverage] = useState(80);
 
-  function handleInput(event) {
+  function handleInput(event: React.ChangeEvent<HTMLInputElement>) {
     inputState(event.target.value);
   }
 
@@ -57,10 +57,17 @@ function ListGroup() {
     }
   }
 
-  function changeGrade(index: number, event) {
-    const value = event.target.value;
+  function changeGrade(
+    index: number,
+    event: React.ChangeEvent<HTMLInputElement>
+  ) {
+    let value = event.target.value;
+
+    if (value.charAt(0) == "0") {
+      event.target.value = value.slice(1);
+    }
     const newClasses = [...items];
-    newClasses[index].gradeInClass = value;
+    newClasses[index].gradeInClass = Number(value);
     addClass(newClasses);
     handleAverage();
   }
@@ -72,7 +79,7 @@ function ListGroup() {
             <ul className="list-group">
               {items.map((item, index) => (
                 <li
-                  key={item.nameOfClass}
+                  key={item.nameOfClass + index}
                   className="list-group-item list-group-item-action list-group-item-primary"
                   onClick={() => {
                     console.log("The number clicked was: ");
@@ -80,7 +87,9 @@ function ListGroup() {
                 >
                   <p className="fs-12">{item.nameOfClass} grade: </p>
                   <input
-                    type="text"
+                    type="number"
+                    max={100}
+                    min={0}
                     required
                     value={item.gradeInClass}
                     onChange={(event) => changeGrade(index, event)}
@@ -95,19 +104,21 @@ function ListGroup() {
               </button>
             )}
           </form>
-          <button onClick={addToList} className="btn btn-primary">
-            Click This to add class!
-          </button>
-          <input type="text" value={input} onChange={handleInput}></input>
-          <br></br>
           <button
             className="btn btn-danger"
             onClick={() => {
               addClass(items.slice(0, -1));
             }}
           >
-            Click This to delete bottom class!
+            Delete Class
           </button>
+          <br></br>
+          <button onClick={addToList} className="btn btn-primary">
+            Add Class
+          </button>
+
+          <input type="text" value={input} onChange={handleInput}></input>
+
           {average > 0 && average < 10 && (
             <img src="/lonelyHorse.jpg" className="img-thumbnail"></img>
           )}
